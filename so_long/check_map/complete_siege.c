@@ -1,0 +1,87 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   complete_siege.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/15 21:17:15 by ohammou-          #+#    #+#             */
+/*   Updated: 2024/01/17 21:55:24 by ohammou-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "check_map.h"
+
+void ft_error(char *str)
+{
+    printf("%s",str);
+    exit (1);
+}
+int pos(char **map)
+{
+    int y;
+    
+    y   =   0;
+    while(map[y])
+    {
+       if(ft_strchr(map[y],'P'))
+            return y;
+        y++;
+    }
+    return 0;
+}
+int count_h(char **map)
+{
+    int h;
+    
+    h = 0;
+    while(map[h])
+        h++;
+    return h;
+}
+void siege(char **map,int x,int y,int  plan)
+{
+    if(plan  == 1)
+    if(y < 0 || x < 0 || x >= ft_strlen(map[0]) || y >= count_h(map) || map[y][x] == '1' || map[y][x] == 'A')
+        return;
+    if(plan  == 2)
+    if(y < 0 || x < 0 || x >= ft_strlen(map[0]) || y >= count_h(map) || map[y][x] == '1' || map[y][x] == 'A' || map[y][x] == 'E')
+        return;
+    map[y][x] = 'A';
+    siege(map,x,y + 1,plan);
+    siege(map,x + 1,y,plan);
+    siege(map,x - 1,y,plan);
+    siege(map,x,y - 1,plan);
+    
+}
+void check_siege(char *path)
+{
+    char **map = ft_map(path);
+    char **map1 = ft_map(path);
+    int y = pos(map);
+    int x;
+    int h;
+    
+    x = 0;
+    h = 0;
+    while(map[y][x] && map[y][x] != 'P')
+            x++;
+    if(y == ft_strlen(map[0]))
+        ft_error("lkharita morba3");
+    siege(map,x,y,2);
+    while(map[h])
+    {
+        if(ft_strchr(map[h],'C'))
+            ft_error("tri9 msdoda");
+        h++;
+    }
+    siege(map1,x,y,1);
+    h = 0;
+    while(map1[h])
+    {
+        if(ft_strchr(map1[h],'E'))
+            ft_error("tri9 msdoda");
+        h++;
+    } 
+}
+
