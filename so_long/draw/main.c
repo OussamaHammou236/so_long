@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:18:33 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/22 20:16:28 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:46:21 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,9 @@ void put_img(t_draw *data,int key)
     }
     else if(key == 123 && data->map[data->pos_y][data->pos_x - 1] == 'C')
     {
-        data->map[data->pos_y][data->pos_x  + 1] = '0';
+        data->map[data->pos_y][data->pos_x  - 1] = '0';
         data->y_C--;
     }
-   
-    printf("%d\n",data->pos_x);
 }
 void message(char *msg)
 {
@@ -116,9 +114,7 @@ int hook(int key,t_draw *data)
 {
     anime_check(key,data);
     put_img(data,key);
-    // data->map[1][5] = '0';
-    printf("dyalhom -> %s\n",data->map[1]);
-    if(data->y_C <= 0)
+    if(data->y_C == 0)
     {
         if(data->map[data->pos_y - 1][data->pos_x] == 'E' && key == 126)
             message("you win");
@@ -139,6 +135,9 @@ int hook(int key,t_draw *data)
         lisr(data);
      if(key == 53)
          exit(0);
+    // for(int i = 0; i < 7;i++)
+    //     printf("%s\n",data->map[i]);
+    printf("\n");
     return 0;
 }
 void ft_draw(char **map)
@@ -162,8 +161,6 @@ void ft_draw(char **map)
 
 int main()
 {
-    
-    printf("main\n");
     char **map = ft_map("../check_map/map.ber");
     
     ft_draw(map);
