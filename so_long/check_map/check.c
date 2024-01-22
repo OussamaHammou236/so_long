@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:31:40 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/21 22:38:00 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:20:02 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	**ft_map(char *path)
 		}
 		i++;
 	}
+	printf("split\n");
 	s = ft_split(join, '\n');
 	return (free(join),close(fd),s);
 }

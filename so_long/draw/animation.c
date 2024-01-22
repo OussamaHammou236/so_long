@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:47:14 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/22 15:36:11 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:22:52 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ void putimg_to_win(t_draw *game)
 {
     int i;
     int j = 0;
-    game->map = ft_map("../check_map/map.ber");
+    //game->map = ft_map("../check_map/map.ber");
     if (!game->map)
     {
         ft_error("khrejt\n");

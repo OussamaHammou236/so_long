@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:18:33 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/22 17:15:29 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:16:28 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,32 @@ void imeges(t_draw *rsm)
         rsm->exit = mlx_xpm_file_to_image(rsm->mlx, "Any.xpm", &rsm->img_width, &rsm->img_height);
         if(!rsm->exit)
             exit(1);
-        //rsm->anime = mlx_xpm_file_to_image(rsm->mlx, "drow/1_1.xpm", &rsm->img_width, &rsm->img_height);
 
 }
-void writ(t_draw *rsm,char **map)
+void writ(t_draw *rsm)
 {
     rsm->x = 0;
-    while(map[rsm->x])
+    while(rsm->map[rsm->x])
     {
         rsm->y = 0;
-        while(map[rsm->x][rsm->y])
+        while(rsm->map[rsm->x][rsm->y])
         {
-            if(map[rsm->x][rsm->y] == '1')
+            if(rsm->map[rsm->x][rsm->y] == '1')
                 mlx_put_image_to_window(rsm->mlx, rsm->mlx_window, rsm->img_ptr, rsm->y * 50,rsm->x * 50 );
-            else if(map[rsm->x][rsm->y] == '0')
+            else if(rsm->map[rsm->x][rsm->y] == '0')
                 mlx_put_image_to_window(rsm->mlx, rsm->mlx_window, rsm->back, rsm->y * 50,rsm->x * 50 );
-            if(map[rsm->x][rsm->y] != '1')
+            if(rsm->map[rsm->x][rsm->y] != '1')
             mlx_put_image_to_window(rsm->mlx, rsm->mlx_window, rsm->back, rsm->y * 50,rsm->x * 50 );
-            if(map[rsm->x][rsm->y] == 'P' )
+            if(rsm->map[rsm->x][rsm->y] == 'P' )
             {
                 mlx_put_image_to_window(rsm->mlx, rsm->mlx_window, rsm->player, rsm->y * 50,rsm->x * 50 );
                 rsm->pos_x = rsm->y;
                 rsm->pos_y = rsm->x;
             }
-            else if(map[rsm->x][rsm->y] == 'C')
+            else if(rsm->map[rsm->x][rsm->y] == 'C')
                  mlx_put_image_to_window(rsm->mlx, rsm->mlx_window, rsm->coins, rsm->y * 50,rsm->x * 50 );
-            else if(map[rsm->x][rsm->y] == 'E')
-                 mlx_put_image_to_window(rsm->mlx, rsm->mlx_window, rsm->exit, rsm->y * 50,rsm->x * 50 );      
+            else if(rsm->map[rsm->x][rsm->y] == 'E')
+                 mlx_put_image_to_window(rsm->mlx, rsm->mlx_window, rsm->exit, rsm->y * 50,rsm->x * 50 );
             rsm->y++;
         }
         rsm->x++;
@@ -73,8 +72,8 @@ void writ(t_draw *rsm,char **map)
 
 void put_img(t_draw *data,int key)
 {
-      if(key == 124 &&  data->map[data->pos_y][data->pos_x + 1] == 'C')
-      {
+       if(key == 124 &&  data->map[data->pos_y][data->pos_x + 1] == 'C')
+       {
         data->map[data->pos_y][data->pos_x + 1] = '0';
         data->y_C--;
       }
@@ -82,6 +81,7 @@ void put_img(t_draw *data,int key)
     {
          data->map[data->pos_y + 1][data->pos_x] = '0';
          data->y_C--;
+
     }
     else if(key == 126 &&  data->map[data->pos_y - 1][data->pos_x] == 'C')
     {
@@ -93,7 +93,8 @@ void put_img(t_draw *data,int key)
         data->map[data->pos_y][data->pos_x  + 1] = '0';
         data->y_C--;
     }
-    printf("%d\n",data->y_C);
+   
+    printf("%d\n",data->pos_x);
 }
 void message(char *msg)
 {
@@ -115,8 +116,8 @@ int hook(int key,t_draw *data)
 {
     anime_check(key,data);
     put_img(data,key);
-    for(int i =0;data->map[i];i++)
-        printf("%s\n",data->map[i]);
+    // data->map[1][5] = '0';
+    printf("dyalhom -> %s\n",data->map[1]);
     if(data->y_C <= 0)
     {
         if(data->map[data->pos_y - 1][data->pos_x] == 'E' && key == 126)
@@ -140,17 +141,17 @@ int hook(int key,t_draw *data)
          exit(0);
     return 0;
 }
-void ft_draw(t_draw rsm)
+void ft_draw(char **map)
 {
-    // t_draw rsm;
-    // rsm = y_x(map);
-    // rsm.map = map;
+    t_draw rsm;
+    rsm = y_x(map);
+    rsm.map = map;
     rsm.mlx = mlx_init();
     rsm.pos_x = 0;
     rsm.pos_y = 0;
-    rsm.mlx_window =  mlx_new_window(rsm.mlx,rsm.tol_x * 50,rsm.tol_y * 50,"so_long");
+    rsm.mlx_window = mlx_new_window(rsm.mlx,rsm.tol_x * 50,rsm.tol_y * 50,"so_long");
     imeges(&rsm);
-    writ(&rsm,rsm.map);
+    writ(&rsm);
     check_map check;
     check = ft_check_C_P_E(rsm.map);
     rsm.y_C = check.C;
@@ -161,10 +162,10 @@ void ft_draw(t_draw rsm)
 
 int main()
 {
+    
+    printf("main\n");
     char **map = ft_map("../check_map/map.ber");
-    t_draw rsm;
-    rsm = y_x(map);
-    rsm.map = map;
-    ft_draw(rsm);
+    
+    ft_draw(map);
     //ft_hrk(map);
 }
