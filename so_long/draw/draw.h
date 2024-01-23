@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 21:34:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/22 16:50:33 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:28:08 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void lisr(t_draw *data);
 void ltht(t_draw *data);
 void lfo9(t_draw *data);
 void walo(t_draw *data);
-
+void putimg_to_win(t_draw *game);
 //int hook(int key,t_draw *data);
 #endif

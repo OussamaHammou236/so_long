@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:18:33 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/22 22:46:21 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:30:43 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void imeges(t_draw *rsm)
         rsm->coins = mlx_xpm_file_to_image(rsm->mlx, "ha.xpm", &rsm->img_width, &rsm->img_height);
         if(!rsm->coins)
             exit(1);
-        rsm->exit = mlx_xpm_file_to_image(rsm->mlx, "Any.xpm", &rsm->img_width, &rsm->img_height);
+        rsm->exit = mlx_xpm_file_to_image(rsm->mlx, "doord-_1_.xpm", &rsm->img_width, &rsm->img_height);
         if(!rsm->exit)
             exit(1);
 
@@ -101,6 +101,7 @@ void message(char *msg)
 }
 void anime_check(int key,t_draw *data)
 {
+    put_img(data,key);
     if(data->map[data->pos_y - 1][data->pos_x] == 'N' && key == 126)
             ft_error("khesrti :(");
     if(data->map[data->pos_y][data->pos_x - 1] == 'N' && key == 123)
@@ -113,9 +114,10 @@ void anime_check(int key,t_draw *data)
 int hook(int key,t_draw *data)
 {
     anime_check(key,data);
-    put_img(data,key);
     if(data->y_C == 0)
     {
+        data->exit = mlx_xpm_file_to_image(data->mlx, "doord_2.xpm", &data->img_width, &data->img_height);
+        putimg_to_win(data);
         if(data->map[data->pos_y - 1][data->pos_x] == 'E' && key == 126)
             message("you win");
         if(data->map[data->pos_y][data->pos_x - 1] == 'E' && key == 123)
@@ -135,9 +137,6 @@ int hook(int key,t_draw *data)
         lisr(data);
      if(key == 53)
          exit(0);
-    // for(int i = 0; i < 7;i++)
-    //     printf("%s\n",data->map[i]);
-    printf("\n");
     return 0;
 }
 void ft_draw(char **map)
@@ -164,5 +163,5 @@ int main()
     char **map = ft_map("../check_map/map.ber");
     
     ft_draw(map);
-    //ft_hrk(map);
+    free(map);
 }

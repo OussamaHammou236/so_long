@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:47:14 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/22 22:34:42 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:27:52 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void putimg_to_win(t_draw *game)
                 mlx_put_image_to_window(game->mlx, game->mlx_window, game->back, i*50,j*50 );
                 mlx_put_image_to_window(game->mlx,game->mlx_window,game->l3do,i*50,j*50);
             }
+            if(game->map[j][i] == 'E')
+                mlx_put_image_to_window(game->mlx,game->mlx_window,game->exit,i*50,j*50); 
             i++;
         }
         j++;

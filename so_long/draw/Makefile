@@ -1,2 +1,2 @@
 all:
-	 gcc  -fsanitize=address -g3 main.c game.c ../check_map/check.c ../check_map/get_next_line.c ../check_map/get_next_line_utils.c ../check_map/ft_split.c ../check_map/ft_substr.c ../check_map/complete_siege.c animation.c -lmlx -framework OpenGL -framework AppKit
+	 gcc   main.c game.c ../check_map/check.c ../check_map/get_next_line.c ../check_map/get_next_line_utils.c ../check_map/ft_split.c ../check_map/ft_substr.c ../check_map/complete_siege.c animation.c -lmlx -framework OpenGL -framework AppKit
