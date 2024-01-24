@@ -1,2 +1,2 @@
 all:
-	 gcc   draw.c so_long.c ft_strncmp.c game.c ../check_map/check.c ../check_map/get_next_line.c ../check_map/get_next_line_utils.c ../check_map/ft_split.c ../check_map/ft_substr.c ../check_map/complete_siege.c animation.c -lmlx -framework OpenGL -framework AppKit
+	 gcc   draw.c ft_itoa.c so_long.c ft_strncmp.c game.c ../check_map/check.c ../check_map/get_next_line.c ../check_map/get_next_line_utils.c ../check_map/ft_split.c ../check_map/ft_substr.c ../check_map/complete_siege.c animation.c -lmlx -framework OpenGL -framework AppKit

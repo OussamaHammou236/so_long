@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:47:14 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/23 16:27:52 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:46:10 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,20 @@ void t7rak(t_draw *game)
     static int fr;
 
     if (fr <= 30)
-    {
         game->l3do = mlx_xpm_file_to_image(game->mlx,"drow/1_5.xpm",&game->img_width,&game->img_height);
-    }
     else  if (fr <= 60)
-    {
         game->l3do = mlx_xpm_file_to_image(game->mlx,"drow/1_2.xpm",&game->img_width,&game->img_height);
-    }
+    
     else  if (fr <= 90)
-    {
         game->l3do = mlx_xpm_file_to_image(game->mlx,"drow/1_3.xpm",&game->img_width,&game->img_height);
-    }
+    
     else  if (fr <= 120)
-    {
         game->l3do = mlx_xpm_file_to_image(game->mlx,"drow/1_4.xpm",&game->img_width,&game->img_height);
-    }
+    
     else  if (fr <= 130)
-    {
         game->l3do = mlx_xpm_file_to_image(game->mlx,"drow/1_4.xpm",&game->img_width,&game->img_height);
-        if (fr == 130)
-            fr = 0;
-    }
+    if (fr == 130)
+        fr = 0;
     fr++;
     putimg_to_win(game);
 }

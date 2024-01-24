@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 12:02:56 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/21 18:59:53 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:13:22 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 // }
 void walo(t_draw *data)
 {
-    data->img_ptr = mlx_xpm_file_to_image(data->mlx, "h.xpm", &data->img_width, &data->img_height);
+    data->back = mlx_xpm_file_to_image(data->mlx, "h.xpm", &data->img_width, &data->img_height);
      if(!data->img_ptr)
          ft_error("image not found1");
     data->player1 = mlx_xpm_file_to_image(data->mlx, ">.xpm", &data->img_width, &data->img_height);
@@ -48,34 +48,38 @@ void walo(t_draw *data)
 void lfo9(t_draw *data)
 {
     walo(data); 
-    mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, data->pos_x * 50,data->pos_y * 50 );
+    mlx_put_image_to_window(data->mlx, data->mlx_window, data->back, data->pos_x * 50,data->pos_y * 50 );
     data->pos_y--;
-    mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, data->pos_x * 50,data->pos_y * 50 );
-    mlx_put_image_to_window(data->mlx, data->mlx_window, data->player1, data->pos_x * 50,data->pos_y * 50 );   
+    mlx_put_image_to_window(data->mlx, data->mlx_window, data->back, data->pos_x * 50,data->pos_y * 50 );
+    mlx_put_image_to_window(data->mlx, data->mlx_window, data->player1, data->pos_x * 50,data->pos_y * 50 );
+    data->i++;   
 }
 void ltht(t_draw *data)
 {
     walo(data); 
-    mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, data->pos_x * 50,data->pos_y * 50 );
+    mlx_put_image_to_window(data->mlx, data->mlx_window, data->back, data->pos_x * 50,data->pos_y * 50 );
     data->pos_y++;
-    mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, data->pos_x*50,data->pos_y * 50 );
+    mlx_put_image_to_window(data->mlx, data->mlx_window, data->back, data->pos_x*50,data->pos_y * 50 );
     mlx_put_image_to_window(data->mlx, data->mlx_window, data->player, data->pos_x * 50,data->pos_y * 50 );
+    data->i++;
 }
 void lisr(t_draw *data)
 {
     walo(data);
-    mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, data->pos_x * 50,data->pos_y * 50 );
+    mlx_put_image_to_window(data->mlx, data->mlx_window, data->back, data->pos_x * 50,data->pos_y * 50 );
     data->pos_x--;
-    mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, data->pos_x*50,data->pos_y * 50 );
+    mlx_put_image_to_window(data->mlx, data->mlx_window, data->back, data->pos_x*50,data->pos_y * 50 );
     mlx_put_image_to_window(data->mlx, data->mlx_window, data->player3, data->pos_x * 50,data->pos_y * 50 );
+    data->i++;
 }
 void limen(t_draw *data)
 {
      walo(data);
-     mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, data->pos_x*50,data->pos_y * 50 );
+     mlx_put_image_to_window(data->mlx, data->mlx_window, data->back, data->pos_x*50,data->pos_y * 50 );
      data->pos_x++;
-     mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, data->pos_x*50,data->pos_y * 50 );
+     mlx_put_image_to_window(data->mlx, data->mlx_window, data->back, data->pos_x*50,data->pos_y * 50 );
      mlx_put_image_to_window(data->mlx, data->mlx_window, data->player2, data->pos_x * 50,data->pos_y * 50 );
+     data->i++;
 }
 // int hook(int key,t_draw *data)
 // {

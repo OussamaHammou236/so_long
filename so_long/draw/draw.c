@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:18:33 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/23 22:51:31 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:13:51 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,30 +111,39 @@ void anime_check(int key,t_draw *data)
     if(data->map[data->pos_y + 1][data->pos_x] == 'N' && key == 125)
             ft_error("khesrti :(");
 }
-int hook(int key,t_draw *data)
+void check_C(int key,t_draw *data)
 {
-    anime_check(key,data);
-    if(data->y_C == 0)
+     if(data->y_C == 0)
     {
         data->exit = mlx_xpm_file_to_image(data->mlx, "doord_2.xpm", &data->img_width, &data->img_height);
         putimg_to_win(data);
         if(data->map[data->pos_y - 1][data->pos_x] == 'E' && key == 126)
-            message("you win");
+            message("you win :)");
         if(data->map[data->pos_y][data->pos_x - 1] == 'E' && key == 123)
-            message("you win");
+            message("you win :)");
         if(data->map[data->pos_y][data->pos_x + 1] == 'E'&& key == 124)
-            message("you win");
+            message("you win :)");
         if(data->map[data->pos_y + 1][data->pos_x] == 'E' && key == 125)
-            message("you win");
+            message("you win :)");
     }
+}
+int hook(int key,t_draw *data)
+{
+    static int i;
+    anime_check(key,data);
+    check_C(key,data);
     if(key == 124 && data->map[data->pos_y][data->pos_x + 1] != '1' && data->map[data->pos_y][data->pos_x + 1] != 'E')
         limen(data);
     else if(key == 125 && data->map[data->pos_y + 1][data->pos_x] != '1' && data->map[data->pos_y + 1][data->pos_x] != 'E')
         ltht(data);
-    else if(key == 126 && data->map[data->pos_y - 1][data->pos_x] != '1' && data->map[data->pos_y - 1][data->pos_x] != 'E')
+    else if(key == 126 && data->map[data->pos_y - 1][data->pos_x] != '1' && data->map[data->pos_y - 1][data->pos_x] != 'E')   
         lfo9(data);
-    else if(key == 123 && data->map[data->pos_y][data->pos_x - 1] != '1' && data->map[data->pos_y][data->pos_x - 1] != 'E')
+    else if(key == 123 && data->map[data->pos_y][data->pos_x - 1] != '1' && data->map[data->pos_y][data->pos_x - 1] != 'E')    
         lisr(data);
+    mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, 150,0);
+    mlx_put_image_to_window(data->mlx, data->mlx_window, data->img_ptr, 100,0);
+    mlx_string_put(data->mlx,data->mlx_window,100,10,0xFFFFFF,ft_itoa(i));
+    i = data->i;
      if(key == 53)
          exit(0);
     return 0;

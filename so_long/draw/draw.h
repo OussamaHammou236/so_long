@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 21:34:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/23 22:57:21 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:14:06 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct draw
     int pos_y;
     void *l3do;
     int y_C;
-    void *anime;  
+    void *anime;
+    int i;  
     
 } t_draw;
 int anime(t_draw *game);
@@ -53,5 +54,6 @@ void walo(t_draw *data);
 void putimg_to_win(t_draw *game);
 void ft_draw(char *path);
 int	ft_strncmp( char *s1, char *s2, size_t n);
+char	*ft_itoa(int n);
 //int hook(int key,t_draw *data);
 #endif
