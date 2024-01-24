@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:18:33 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/23 16:30:43 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:51:31 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void put_img(t_draw *data,int key)
 }
 void message(char *msg)
 {
-    printf("%s",msg);
-    exit(0);
+   printf("%s",msg);
+   exit(0);
 }
 void anime_check(int key,t_draw *data)
 {
@@ -139,9 +139,10 @@ int hook(int key,t_draw *data)
          exit(0);
     return 0;
 }
-void ft_draw(char **map)
+void ft_draw(char *path)
 {
     t_draw rsm;
+    char **map = ft_map(path);
     rsm = y_x(map);
     rsm.map = map;
     rsm.mlx = mlx_init();
@@ -153,15 +154,15 @@ void ft_draw(char **map)
     check_map check;
     check = ft_check_C_P_E(rsm.map);
     rsm.y_C = check.C;
+    mlx_string_put(rsm.mlx,rsm.mlx_window,20,10,0xFFFFFF,"moves : ");
     mlx_key_hook(rsm.mlx_window, &hook,&rsm);
     mlx_loop_hook(rsm.mlx,anime,&rsm);
     mlx_loop(rsm.mlx);
 }
 
-int main()
-{
-    char **map = ft_map("../check_map/map.ber");
-    
-    ft_draw(map);
-    free(map);
-}
+// int main()
+// {
+//    // char **map = ft_map("../maps/map.ber");
+//     ft_draw("../maps/map.ber");
+//     //free(map);
+// }
