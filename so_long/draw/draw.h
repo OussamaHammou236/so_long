@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 21:34:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/24 15:14:06 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:50:53 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ typedef struct draw
     void *l3do;
     int y_C;
     void *anime;
-    int i;  
+    int i;
+    int pos_x_N;
+    int pos_y_N;
+    int wall_flag;
+    char **map1;
     
 } t_draw;
 int anime(t_draw *game);

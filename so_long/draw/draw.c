@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 22:18:33 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/24 15:13:51 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:53:10 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ void ft_draw(char *path)
     rsm.mlx = mlx_init();
     rsm.pos_x = 0;
     rsm.pos_y = 0;
+    rsm.wall_flag = 0;
+    rsm.map1 = rsm.map;
     rsm.mlx_window = mlx_new_window(rsm.mlx,rsm.tol_x * 50,rsm.tol_y * 50,"so_long");
     imeges(&rsm);
     writ(&rsm);

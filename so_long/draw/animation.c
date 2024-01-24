@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:47:14 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/24 14:46:10 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:06:11 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,63 @@ void t7rak(t_draw *game)
     fr++;
     putimg_to_win(game);
 }
+void an(t_draw *game)
+{
+    int i;
+    int j;
+    j = 0;
+    game->pos_x_N = 0;
+    game->pos_y_N = 0;
+   while (game->map[j])
+    {
+        i = 0;
+        while (game->map[j][i])
+        {
+            if (game->map[j][i] == 'N')
+            {
+               game->pos_x_N = i;
+               game->pos_y_N = j;
+               break;
+            }
+            i++;
+        }
+        j++;
+    }
+}
+void pr(t_draw *game)
+{
+    an(game);
+    if((game->pos_x_N + 1 == game->pos_x || game->pos_x_N - 1 == game->pos_x )&& (game->pos_y_N == game->pos_y))
+        ft_error("khsrti");
+    if(game->wall_flag == 0 && (game->map[game->pos_y_N][game->pos_x_N + 1] == '0' || game->map[game->pos_y_N][game->pos_x_N + 1] == 'P'))
+    {
+        game->map[game->pos_y_N][game->pos_x_N + 1] = 'N';
+        game->map[game->pos_y_N][game->pos_x_N] = '0';
+        mlx_put_image_to_window(game->mlx, game->mlx_window, game->back, game->pos_x_N * 50,game->pos_y_N * 50 );
+
+    }
+    if(game->map[game->pos_y_N][game->pos_x_N + 1] == '1')
+        game->wall_flag = 1;
+        
+        if(game->wall_flag == 1 && (game->map[game->pos_y_N][game->pos_x_N - 1] == '0' || game->map[game->pos_y_N][game->pos_x_N - 1] == 'P'))
+        {
+            game->map[game->pos_y_N][game->pos_x_N - 1] = 'N';
+            game->map[game->pos_y_N][game->pos_x_N] = '0';
+            mlx_put_image_to_window(game->mlx, game->mlx_window, game->back, game->pos_x_N * 50,game->pos_y_N * 50 );
+        }
+        if (game->map[game->pos_y_N][game->pos_x_N - 1] == '1')
+            game->wall_flag = 0;
+}
+
 int anime(t_draw *game)
 {
+    static int f;
+    if(f > 130 && f < 132)
+        pr(game);
+
     t7rak(game);
-    return (0);
+    f++;
+    if(f == 132)
+        f=0;
+    return (0);   
 }
