@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../ft_printf/ft_printf.h"
+# include "../ft_print/ft_printf.h"
 typedef struct check
 {
     int C;
