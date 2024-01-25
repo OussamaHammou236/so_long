@@ -6,15 +6,15 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:05:14 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/17 21:55:36 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:26:12 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_map.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!str)

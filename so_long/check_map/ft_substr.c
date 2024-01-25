@@ -6,15 +6,15 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 19:15:02 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/17 21:55:32 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/25 10:27:58 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_map.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s,  int start, int len)
 {
-	size_t	i;
+	int	i;
 	char	*b;
 
 	i = 0;

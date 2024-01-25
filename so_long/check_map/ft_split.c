@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:17:09 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/17 21:55:28 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:59:38 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ static int	ft_hsb(char const *s, char c)
 	return (hsb);
 }
 
-static char	**ft_free(char **b, int i)
+char	**ft_free(char **b)
 {
 	int	j;
 
 	j = 0;
-	while (j < i)
+	while (b[j])
 	{
-		free(b[i]);
+		free(b[j]);
 		j++;
 	}
 	free(b);
@@ -67,7 +67,7 @@ static char	**ft_malloc(char const *s, char c, char **b)
 		{
 			b[j] = ft_substr(&s[i - n], 0, n);
 			if (!b[j])
-				return (ft_free(b, j));
+				return (ft_free(b));
 			j++;
 		}
 	}

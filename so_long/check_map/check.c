@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:31:40 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/22 22:36:10 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:16:00 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	**ft_map(char *path)
 			ft_error("invalid map");
 		if(join[i] != '1' && join[i] != 'P' && join[i] != 'C' && join[i] != 'E' && join[i] != '0' && join[i] != '\n' && join[i] != 'N')
 		{
-			printf("invalid character --> %c",join[i]);
+			ft_printf("invalid character --> %c",join[i]);
 			exit(1);
 		}
 		i++;
@@ -114,10 +114,8 @@ int total_check(char *path)
 	map = ft_map(path);
 	ft_check_length_width(map);
 	h = ft_check_C_P_E(map);
+	ft_free(map);
 	check_siege(path);
 	return 1;
 }
-// int main()
-// {
-// 	printf("%d",total_check("map.ber"));
-// }
+

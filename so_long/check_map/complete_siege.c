@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:17:15 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/17 21:55:24 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:15:25 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void ft_error(char *str)
 {
-    printf("%s",str);
+    ft_printf("%s\n",str);
     exit (1);
 }
-int pos(char **map)
+size_t pos(char **map)
 {
-    int y;
+    size_t y;
     
     y   =   0;
     while(map[y])
@@ -82,6 +82,8 @@ void check_siege(char *path)
         if(ft_strchr(map1[h],'E'))
             ft_error("tri9 msdoda");
         h++;
-    } 
+    }
+    ft_free(map1);
+    ft_free(map);
 }
 
