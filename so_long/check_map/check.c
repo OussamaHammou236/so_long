@@ -6,42 +6,17 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:31:40 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/25 15:16:00 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:44:10 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_map.h"
 
-int	tol(char *s)
+char	*line_map(int fd)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	if (!s)
-		return (0);
-	while (s[j])
-	{
-		if (s[j] == '1')
-			i++;
-		j++;
-	}
-	if (i == j)
-		return (1);
-	return (0);
-}
-
-char	**ft_map(char *path)
-{
-	int		fd;
 	char	*line;
 	char	*join;
-	char	**s;
-	int		i;
-	
-	i	=	0;
-	fd = open(path, 'r');
+
 	join = "";
 	while (1)
 	{
@@ -51,20 +26,36 @@ char	**ft_map(char *path)
 		if (!line)
 			break ;
 	}
-	while(join[i])
+	return (join);
+}
+
+char	**ft_map(char *path)
+{
+	int		fd;
+	char	**s;
+	int		i;
+	char	*join;
+
+	i = 0;
+	fd = open(path, 'r');
+	join = line_map(fd);
+	while (join[i])
 	{
-		if((join[i] == '\n' && (join[i + 1] == '\n' || join[i + 1] == '\0')) || join[0] == '\n')
+		if ((join[i] == '\n' && (join[i + 1] == '\n' || join[i + 1] == '\0'))
+			|| join[0] == '\n')
 			ft_error("invalid map");
-		if(join[i] != '1' && join[i] != 'P' && join[i] != 'C' && join[i] != 'E' && join[i] != '0' && join[i] != '\n' && join[i] != 'N')
+		if (join[i] != '1' && join[i] != 'P' && join[i] != 'C' && join[i] != 'E'
+			&& join[i] != '0' && join[i] != '\n' && join[i] != 'N')
 		{
-			ft_printf("invalid character --> %c",join[i]);
+			ft_printf("invalid character --> %c", join[i]);
 			exit(1);
 		}
 		i++;
 	}
 	s = ft_split(join, '\n');
-	return (free(join),close(fd),s);
+	return (free(join), close(fd), s);
 }
+
 void	ft_check_length_width(char **map)
 {
 	int	i;
@@ -83,39 +74,41 @@ void	ft_check_length_width(char **map)
 	if (tol(map[0]) == 0 || tol(map[i - 1]) == 0)
 		ft_error("error length");
 }
-check_map ft_check_C_P_E(char **map)
+
+t_check_map	ft_check_c_p_e(char **map)
 {
-	int i;
-	i	=	1;
-	check_map check;
-	check.C = 0;
-	check.E = 0;
-	check.P = 0;
-	
-	while(map[i])
+	int			i;
+	t_check_map	check;
+
+	i = 1;
+	check.c = 0;
+	check.e = 0;
+	check.p = 0;
+	while (map[i])
 	{
-		check.C += ft_strchr(map[i],'C');
-		check.P += ft_strchr(map[i],'P');
-		check.E += ft_strchr(map[i],'E');
+		check.c += ft_strchr(map[i], 'C');
+		check.p += ft_strchr(map[i], 'P');
+		check.e += ft_strchr(map[i], 'E');
 		i++;
 	}
-	if(check.C == 0)
+	if (check.c == 0)
 		ft_error("error no collectible");
-	if(check.P == 0 || check.P > 1)
+	if (check.p == 0 || check.p > 1)
 		ft_error("error there is more than one player");
-	if(check.E == 0 || check.E > 1)
+	if (check.e == 0 || check.e > 1)
 		ft_error("error there is more than one map exit");
-	return check;
-}
-int total_check(char *path)
-{
-	char **map;
-	check_map h;
-	map = ft_map(path);
-	ft_check_length_width(map);
-	h = ft_check_C_P_E(map);
-	ft_free(map);
-	check_siege(path);
-	return 1;
+	return (check);
 }
 
+int	total_check(char *path)
+{
+	char		**map;
+	t_check_map	check;
+
+	map = ft_map(path);
+	ft_check_length_width(map);
+	check = ft_check_c_p_e(map);
+	ft_free(map);
+	check_siege(path);
+	return (1);
+}

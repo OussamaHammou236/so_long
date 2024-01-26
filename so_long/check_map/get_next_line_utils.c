@@ -86,7 +86,7 @@ char	*ft_strjoin(char *s1, char *s2, char *s3)
 int	ft_strchr(const char *s, int c)
 {
 	int	i;
-	int b;
+	int	b;
 
 	b = 0;
 	i = 0;

@@ -12,9 +12,9 @@
 
 #include "check_map.h"
 
-char	*ft_substr(char const *s,  int start, int len)
+char	*ft_substr(char const *s, int start, int len)
 {
-	int	i;
+	int		i;
 	char	*b;
 
 	i = 0;

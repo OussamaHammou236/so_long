@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 22:50:49 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/26 11:30:00 by ohammou-         ###   ########.fr       */
+/*   Created: 2024/01/26 11:34:29 by ohammou-          #+#    #+#             */
+/*   Updated: 2024/01/26 15:37:15 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "check_map.h"
 
-int	main(int ac, char **av)
+int	tol(char *s)
 {
-	if (ac != 2)
-		ft_error("wa dkhel lmap");
-	if (ft_strncmp(&av[1][ft_strlen(av[1] + 4)], ".ber", 5) != 0)
-		ft_error("darori lmap tkon .ber");
-	total_check(av[1]);
-	ft_draw(av[1]);
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!s)
+		return (0);
+	while (s[j])
+	{
+		if (s[j] == '1')
+			i++;
+		j++;
+	}
+	if (i == j)
+		return (1);
+	return (0);
+}
+
+void	ft_error(char *str)
+{
+	ft_printf("%s\n", str);
+	exit(1);
 }

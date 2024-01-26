@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 21:34:44 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/25 15:15:05 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:29:37 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct draw
 	void	*exit;
 	void	*back;
 	void	*coins;
-	int     img_width; 
-    int     img_height;
+	int		img_width;
+	int		img_height;
 	char	**map;
 	int		y;
 	int		x;
@@ -40,14 +40,16 @@ typedef struct draw
 	int		pos_x;
 	int		pos_y;
 	void	*l3do;
-	int		y_C;
+	int		y_c;
 	void	*anime;
 	int		moves;
-	int		pos_x_N;
-	int		pos_y_N;
+	int		pos_x_n;
+	int		pos_y_n;
 	int		wall_flag;
+	int		key;
 
 }			t_draw;
+
 int			anime(t_draw *game);
 void		t7rak(t_draw *game);
 void		imeges(t_draw *rsm);
@@ -60,5 +62,12 @@ void		putimg_to_win(t_draw *game);
 void		ft_draw(char *path);
 int			ft_strncmp(char *s1, char *s2, size_t n);
 char		*ft_itoa(int n);
-// int hook(int key,t_draw *data);
+void		putimg_to_win(t_draw *game);
+void		put_img(t_draw *data, int key);
+void		anime_check(int key, t_draw *data);
+void		check_c(int key, t_draw *data);
+int32_t		message(char *msg);
+void		imeges(t_draw *rsm);
+t_draw		y_x(char **map);
+
 #endif

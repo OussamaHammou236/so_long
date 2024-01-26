@@ -47,7 +47,6 @@ char	*after_new_line(char *bfr)
 	return (NULL);
 }
 
-
 char	*get_rest(char *bfrcopy, int fd, char *bfr, ssize_t len)
 {
 	static char	*remaining;

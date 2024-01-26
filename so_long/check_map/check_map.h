@@ -17,34 +17,39 @@
 #  define BUFFER_SIZE 20
 # endif
 
+# include "../ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../ft_printf/ft_printf.h"
+
 typedef struct check
 {
-    int C;
-    int P;
-    int E;
-} check_map;
+	int		c;
+	int		p;
+	int		e;
+	char	**map;
+	char	**map1;
+	int		y;
+	int		x;
+	int		plan;
+}			t_check_map;
 
-char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2, char *s3);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlcat(char *dst, const char *src, size_t n);
-int	ft_strlen(const char *str);
-int		ft_strchr(const char *s, int c);
-char	**ft_split(char const *s, char c);
-char	*ft_substr(char const *s,  int start, int len);
-void    siege(char **map,int x,int y,int  plan);
-void    ft_error(char *str);
-void    check_siege(char *path);
-char	**ft_map(char *path);
-check_map    ft_check_C_P_E(char **map);
-int total_check(char *path);
-char    **ft_free(char **b);
-
-
+char		*get_next_line(int fd);
+char		*ft_strjoin(char *s1, char *s2, char *s3);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t		ft_strlcat(char *dst, const char *src, size_t n);
+int			ft_strlen(const char *str);
+int			ft_strchr(const char *s, int c);
+char		**ft_split(char const *s, char c);
+char		*ft_substr(char const *s, int start, int len);
+void		siege(char **map, int x, int y, int plan);
+void		ft_error(char *str);
+void		check_siege(char *path);
+char		**ft_map(char *path);
+t_check_map	ft_check_c_p_e(char **map);
+int			total_check(char *path);
+char		**ft_free(char **b);
+int			tol(char *s);
 
 #endif
