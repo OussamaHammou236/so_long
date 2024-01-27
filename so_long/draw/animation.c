@@ -6,7 +6,7 @@
 /*   By: ohammou- <ohammou-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 10:47:14 by ohammou-          #+#    #+#             */
-/*   Updated: 2024/01/26 15:48:17 by ohammou-         ###   ########.fr       */
+/*   Updated: 2024/01/27 09:31:44 by ohammou-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,9 @@ void	t7rak(t_draw *game)
 		game->l3do = mlx_xpm_file_to_image(game->mlx,
 				"../textures/drow/1_4.xpm",
 				&game->img_width, &game->img_height);
-	else if (fr <= 60)
-		game->l3do = mlx_xpm_file_to_image(game->mlx,
-				"../textures/drow/1_4.xpm",
-				&game->img_width, &game->img_height);
 	if (!game->l3do)
 		ft_error("error in imeges");
-	if (fr == 70)
+	if (fr == 50)
 		fr = 0;
 	fr++;
 	putimg_to_win(game);
@@ -111,11 +107,11 @@ int	anime(t_draw *game)
 {
 	static int	f;
 
-	if (f > 140 && f < 142)
+	if (f > 100 && f < 102)
 		an(game);
 	t7rak(game);
 	f++;
-	if (f == 142)
+	if (f == 102)
 		f = 0;
 	return (0);
 }
