@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/ohammou-/Desktop/so_long_github/so_long/check_map",
-      "program": "/Users/ohammou-/Desktop/so_long_github/so_long/check_map/build/Debug/outDebug"
+      "cwd": "/Users/ohammou-/Desktop/hh/draw",
+      "program": "/Users/ohammou-/Desktop/hh/draw/build/Debug/outDebug"
     }
   ]
 }
